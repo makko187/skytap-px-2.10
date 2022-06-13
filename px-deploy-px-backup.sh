@@ -66,5 +66,27 @@ kubectl exec -it $PX_POD -n kube-system -- /opt/pwx/bin/pxctl status
 sleep 5
 
 
+echo " Prepare to install Helm for PX -Backup Install"
+kubectl create namespace central
+kubectl apply -f px-sc.yaml
+snap install helm --classic
+sleep 10
+helm repo add portworx http://charts.portworx.io/ && helm repo update
+sleep 5
+
+echo " Install PX -Backup"
+
+helm install px-central portworx/px-central --namespace central --set persistentStorage.enabled=true,persistentStorage.storageClassName="portworx-sc",pxbackup.enabled=true
+
 echo " Step 6. Login to the FlashArray and verify the Cloud Volumes have been created - http://10.0.0.11"
 echo " Step 7. Configure Grafana using default user: admin | password: admin - http://10.0.0.30:30196"
+echo " Step 8. Connect ti PX Backup GUI and Deploy K8 - PX Apps!"
+echo " Connect to PX-Backup GUI - http://10.0.0.30:32645/
+		a. Credentials: admin:admin
+		b. Add PX Cluster: 
+			i. K8 Platform: Others
+			ii. Clustername- px-cluster-local
+			iii. Copy paste output : kubectl config view --flatten --minify
+			iv. K8 services - others
+
+
