@@ -79,7 +79,7 @@ helm install px-central portworx/px-central --namespace central --set persistent
 sleep 5
 
 while true; do
-    NUM_READY=`kubectl get po --namespace central -ljob-name=pxcentral-post-install-hook  -o wide | awk '{print $1, $3}' | grep -iv error`
+    NUM_READY=`kubectl get po --namespace central -ljob-name=pxcentral-post-install-hook  -o wide | awk '{print $1, $3}' | grep -iv error | awk '{print $2}' | tail -1`
     if [ "${NUM_READY}" == "Completed" ]; then
         echo "PX Backup Installed!"
         break
