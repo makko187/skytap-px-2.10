@@ -1,4 +1,4 @@
-#!/bin/bash
+bier pureuser   2462 Jun 13 08:52 px-deploy-skytap.sh/bash
 
 echo "PX 2.10 Deployment Script Running on FA Cloud Volumes"
 sleep 1
@@ -69,7 +69,6 @@ sleep 5
 echo " Prepare to install Helm for PX -Backup Install"
 kubectl create namespace central
 kubectl apply -f px-sc.yaml
-snap install helm --classic
 sleep 10
 helm repo add portworx http://charts.portworx.io/ && helm repo update
 sleep 5
