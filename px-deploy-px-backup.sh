@@ -76,6 +76,18 @@ sleep 5
 echo " Install PX -Backup"
 
 helm install px-central portworx/px-central --namespace central --set persistentStorage.enabled=true,persistentStorage.storageClassName="portworx-sc",pxbackup.enabled=true
+sleep 5
+
+while true; do
+    NUM_READY=`kubectl get po --namespace central -ljob-name=pxcentral-post-install-hook  -o wide | awk '{print $1, $3}' | grep -iv error`
+    if [ "${NUM_READY}" == "Completed" ]; then
+        echo "PX Backup Installed!"
+        break
+    else
+        echo "Waiting for PX Backup to be ready. Status: ${NUM_READY}"
+    fi
+    sleep 5
+done
 
 echo " Step 6. Login to the FlashArray and verify the Cloud Volumes have been created - http://10.0.0.11"
 echo " Step 7. Configure Grafana using default user: admin | password: admin - http://10.0.0.30:30196"
