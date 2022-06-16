@@ -1,6 +1,9 @@
-bier pureuser   2462 Jun 13 08:52 px-deploy-skytap.sh/bash
+#!/bin/bash
 
 echo "PX 2.10 Deployment Script Running on FA Cloud Volumes"
+echo "This script will install Portworx and PX Backup. Please wait for the installation script to complete. Installation will approximately take around 20 minutes."
+read -n 1 -s -r -p "Press any key to continue"
+
 sleep 1
 
 echo "Checking K8 Nodes are Ready"
