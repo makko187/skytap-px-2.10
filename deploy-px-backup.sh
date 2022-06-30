@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo " Prepare to install Helm for PX -Backup Install"
 kubectl create namespace central
 kubectl apply -f px-sc.yaml
