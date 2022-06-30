@@ -28,7 +28,7 @@ sleep 2
 kubectl get secrets -A | grep px-pure-secret
 sleep 5
 
-echo " Step 3. Install Prometheus Operator and check if the POD is running:"
+echo " Step 3. Install PX Operator and check if the POD is running:"
 kubectl apply -f 'https://install.portworx.com/2.10?comp=pxoperator'
 
 while true; do
@@ -86,6 +86,8 @@ sleep 5
 kubectl apply -f grafana.yaml
 
 sleep 10
+
+echo "Portworx Installation Complete!!!!"
 
 echo " Step 6. Login to the FlashArray and verify the Cloud Volumes have been created - http://10.0.0.11"
 echo " Step 7. Configure Grafana using default user: admin | password: admin - http://10.0.0.30:30196"
