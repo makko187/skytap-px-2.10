@@ -34,7 +34,7 @@ kubectl apply -f 'https://install.portworx.com/2.10?comp=pxoperator'
 while true; do
     NUM_READY=`kubectl get pods -n kube-system -o wide | grep portworx-operator | grep Running | wc -l`
     if [ "${NUM_READY}" == "1" ]; then
-        echo "Prometheus pod is ready !"
+        echo "PX Operator pod is ready!"
         kubectl get pods -n kube-system -o wide | grep portworx-operator | grep Running
         break
     else

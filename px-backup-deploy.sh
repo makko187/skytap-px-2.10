@@ -23,7 +23,7 @@ while true; do
     sleep 5
 done
 
-echo " 1. Connect to PX-Backup GUI - http://10.0.0.30:32645/ : Credentials: admin:admin"
+echo " 1. Connect to PX-Backup GUI - http://10.0.0.30:<svc-port>/ : Credentials: admin:admin"
 echo " 2. Add PX Cluster"
 echo " 3. K8 Platform: Others"
 echo " 4. Clustername- px-cluster-local"
